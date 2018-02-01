@@ -15,11 +15,14 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinSCP;
 
 namespace Tweak_Installer
 {
     public partial class Main : Form
     {
+        static bool verbose = false;
+        bool enabled = false;
         static List<string> debs = new List<string>();
         public Main()
         {
@@ -42,28 +45,52 @@ namespace Tweak_Installer
             {
                 case DialogResult.OK:
                     {
+                        enabled = true;
                         foreach (string i in openFileDialog.FileNames)
                         {
                             debs.Add(i);
                         }
                         break;
                     }
+                default:
+                    enabled = false;
+                    break;
             }
         }
 
         private void install_Click(object sender, EventArgs e)
         {
-            Process.Start("tic.exe", "dont-update " + (!auto.Checked ? "dont-respring dont-refresh " : "") + " install " + join(debs, " "));
+            if (!enabled)
+            {
+                MessageBox.Show("Please select a deb, ipa or zip first");
+                return;
+            }
+            Process.Start("tic.exe", "dont-update " + (!auto.Checked ? "dont-respring dont-refresh " : "") + (verbose ? "verbose " : "") + " install " + join(debs, " "));
         }
 
         private void Uninstall_Click(object sender, EventArgs e)
         {
-            Process.Start("tic.exe", "dont-update " + (!auto.Checked ? "dont-respring dont-refresh " : "") + " uninstall " + join(debs, " "));
+            if (!enabled)
+            {
+                MessageBox.Show("Please select a deb, ipa or zip first");
+                return;
+            }
+            Process.Start("tic.exe", "dont-update " + (!auto.Checked ? "dont-respring dont-refresh " : "") + (verbose ? "verbose " : "") + " uninstall " + join(debs, " "));
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\tweak-installer\\")) Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\tweak-installer\\");
+            ContextMenu installmenu = new ContextMenu();
+            installmenu.MenuItems.Add("Install Filza");
+            installmenu.MenuItems[0].Click += InstallFilza;
+
+            install.ContextMenu = installmenu;
+
+            ContextMenu uninstallmenu = new ContextMenu();
+            uninstallmenu.MenuItems.Add("Uninstall Filza");
+            uninstallmenu.MenuItems[0].Click += RemoveFilza;
+
+            Uninstall.ContextMenu = uninstallmenu;
             //check for updates
             try
             {
@@ -84,7 +111,7 @@ namespace Tweak_Installer
             catch { }
             if (!File.Exists("settings"))
             {
-                string[] def = new string[3];
+                string[] def = new string[] { "192.168.1.1", "22", "" };
                 File.WriteAllLines("settings", def);
             }
             string[] data = File.ReadAllLines("settings"); //get ssh settings
@@ -93,18 +120,76 @@ namespace Tweak_Installer
                 data[i] = data[i].Split('#')[0];
             }
             host.Text = data[0];
+            port.Text = data[1];
             pass.Text = data[2];
+            if (port.Text == "" || port.Text == "root")
+            {
+                port.Text = "22";
+            }
+        }
+
+        private void RemoveFilza(object sender, EventArgs e)
+        {
+            MessageBox.Show("This could take up to a minute");
+            Session s = openServer();
+            s.ExecuteCommand("rm -r /Applications/Filza.app");
+            s.ExecuteCommand("uicache");
+            s.Close();
+        }
+
+        Session openServer()
+        {
+            SessionOptions sessionOptions = new SessionOptions
+            {
+                Protocol = Protocol.Sftp,
+                HostName = host.Text,
+                UserName = "root",
+                Password = pass.Text,
+                PortNumber = int.Parse(port.Text),
+                GiveUpSecurityAndAcceptAnySshHostKey = true
+            };
+            Session session = new Session();
+            try
+            {
+                session.Open(sessionOptions);
+            }
+            catch (SessionRemoteException e)
+            {
+                if (e.ToString().Contains("refused")) MessageBox.Show("Error: SSH Connection Refused\nAre you jailbroken?\nHave you entered your devices IP and port correctly?");
+                else if (e.ToString().Contains("Access denied")) MessageBox.Show("Error: SSH Connection Refused due to incorrect credentials. Are you sure you typed your password correctly?");
+                else if (e.ToString().Contains("Cannot initialize SFTP protocol")) MessageBox.Show("Error: SFTP not available. Make sure you have sftp installed by default. For Yalu or Meridian, please install \"SCP and SFTP for dropbear\" by coolstar. For LibreIOS, make sure SFTP is moved to /usr/bin/.");
+                else
+                {
+                    Clipboard.SetText(e.ToString());
+                    MessageBox.Show("Unknown Error. Please use the big red bug report link and include some form of crash report. Error report copying to clipboard.");
+                    throw e;
+                }
+                Environment.Exit(0);
+            }
+            return session;
+        }
+        private void InstallFilza(object sender, EventArgs e)
+        {
+            MessageBox.Show("This could take up to a minute");
+            Session s = openServer();
+            s.ExecuteCommand("rm Filza.tar");
+            s.ExecuteCommand("wget dl.sparko.me/Filza.tar");
+            s.ExecuteCommand("tar -xf Filza.tar");
+            s.ExecuteCommand("rm -r /Applications/Filza.app");
+            s.ExecuteCommand("mv Filza.app /Applications/Filza.app");
+            s.ExecuteCommand("uicache");
+            s.Close();
         }
 
         private void host_TextChanged(object sender, EventArgs e)
         {
-            string[] data = { host.Text, "root", pass.Text };
+            string[] data = { host.Text, port.Text, pass.Text };
             File.WriteAllLines("settings", data);
         }
 
         private void pass_TextChanged(object sender, EventArgs e)
         {
-            string[] data = { host.Text, "root", pass.Text };
+            string[] data = { host.Text, port.Text, pass.Text };
             File.WriteAllLines("settings", data);
         }
 
@@ -161,6 +246,22 @@ namespace Tweak_Installer
         private void autolabel_Click(object sender, EventArgs e)
         {
             auto.Checked = !auto.Checked;
+        }
+
+        private void port_TextChanged(object sender, EventArgs e)
+        {
+            string[] data = { host.Text, port.Text, pass.Text };
+            File.WriteAllLines("settings", data);
+        }
+
+        private void version_Click(object sender, EventArgs e)
+        {
+            verbose = true;
+        }
+
+        private void terminal_Click(object sender, EventArgs e)
+        {
+            Process.Start("putty.exe", host.Text + ":" + port.Text + " -l root -pw " + pass.Text);
         }
     }
 }

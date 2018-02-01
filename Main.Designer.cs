@@ -49,6 +49,9 @@
             this.github = new System.Windows.Forms.LinkLabel();
             this.autolabel = new System.Windows.Forms.Label();
             this.paypal = new System.Windows.Forms.LinkLabel();
+            this.portlbl = new System.Windows.Forms.Label();
+            this.port = new System.Windows.Forms.TextBox();
+            this.terminal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // install
@@ -58,7 +61,7 @@
             this.install.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.install.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Bold);
             this.install.ForeColor = System.Drawing.Color.Gainsboro;
-            this.install.Location = new System.Drawing.Point(12, 222);
+            this.install.Location = new System.Drawing.Point(9, 271);
             this.install.Name = "install";
             this.install.Size = new System.Drawing.Size(220, 75);
             this.install.TabIndex = 5;
@@ -73,7 +76,7 @@
             this.Uninstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Uninstall.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Bold);
             this.Uninstall.ForeColor = System.Drawing.Color.Gainsboro;
-            this.Uninstall.Location = new System.Drawing.Point(238, 222);
+            this.Uninstall.Location = new System.Drawing.Point(235, 271);
             this.Uninstall.Name = "Uninstall";
             this.Uninstall.Size = new System.Drawing.Size(220, 75);
             this.Uninstall.TabIndex = 6;
@@ -136,7 +139,7 @@
             this.select.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.select.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.select.ForeColor = System.Drawing.Color.DimGray;
-            this.select.Location = new System.Drawing.Point(12, 165);
+            this.select.Location = new System.Drawing.Point(9, 214);
             this.select.Name = "select";
             this.select.Size = new System.Drawing.Size(446, 51);
             this.select.TabIndex = 4;
@@ -156,7 +159,7 @@
             this.respring.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.respring.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Bold);
             this.respring.ForeColor = System.Drawing.Color.White;
-            this.respring.Location = new System.Drawing.Point(12, 303);
+            this.respring.Location = new System.Drawing.Point(9, 352);
             this.respring.Name = "respring";
             this.respring.Size = new System.Drawing.Size(220, 49);
             this.respring.TabIndex = 7;
@@ -171,7 +174,7 @@
             this.uicache.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uicache.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Bold);
             this.uicache.ForeColor = System.Drawing.Color.White;
-            this.uicache.Location = new System.Drawing.Point(238, 303);
+            this.uicache.Location = new System.Drawing.Point(235, 352);
             this.uicache.Name = "uicache";
             this.uicache.Size = new System.Drawing.Size(220, 49);
             this.uicache.TabIndex = 8;
@@ -191,7 +194,7 @@
             this.auto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.auto.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Bold);
             this.auto.ForeColor = System.Drawing.Color.White;
-            this.auto.Location = new System.Drawing.Point(59, 362);
+            this.auto.Location = new System.Drawing.Point(56, 411);
             this.auto.Name = "auto";
             this.auto.Size = new System.Drawing.Size(12, 11);
             this.auto.TabIndex = 9;
@@ -202,7 +205,7 @@
             this.error.AutoSize = true;
             this.error.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.error.LinkColor = System.Drawing.Color.Red;
-            this.error.Location = new System.Drawing.Point(7, 390);
+            this.error.Location = new System.Drawing.Point(4, 439);
             this.error.Name = "error";
             this.error.Size = new System.Drawing.Size(467, 29);
             this.error.TabIndex = 10;
@@ -219,14 +222,15 @@
             this.version.Name = "version";
             this.version.Size = new System.Drawing.Size(25, 13);
             this.version.TabIndex = 16;
-            this.version.Text = "1.0";
+            this.version.Text = "1.3";
+            this.version.Click += new System.EventHandler(this.version_Click);
             // 
             // twitter
             // 
             this.twitter.AutoSize = true;
             this.twitter.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.twitter.LinkColor = System.Drawing.Color.Red;
-            this.twitter.Location = new System.Drawing.Point(12, 430);
+            this.twitter.Location = new System.Drawing.Point(9, 479);
             this.twitter.Name = "twitter";
             this.twitter.Size = new System.Drawing.Size(61, 13);
             this.twitter.TabIndex = 11;
@@ -239,7 +243,7 @@
             this.reddit.AutoSize = true;
             this.reddit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reddit.LinkColor = System.Drawing.Color.Red;
-            this.reddit.Location = new System.Drawing.Point(79, 430);
+            this.reddit.Location = new System.Drawing.Point(76, 479);
             this.reddit.Name = "reddit";
             this.reddit.Size = new System.Drawing.Size(39, 13);
             this.reddit.TabIndex = 12;
@@ -252,7 +256,7 @@
             this.creator.AutoSize = true;
             this.creator.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creator.LinkColor = System.Drawing.Color.Red;
-            this.creator.Location = new System.Drawing.Point(284, 430);
+            this.creator.Location = new System.Drawing.Point(281, 479);
             this.creator.Name = "creator";
             this.creator.Size = new System.Drawing.Size(101, 13);
             this.creator.TabIndex = 15;
@@ -265,7 +269,7 @@
             this.ui.AutoSize = true;
             this.ui.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ui.LinkColor = System.Drawing.Color.Red;
-            this.ui.Location = new System.Drawing.Point(391, 430);
+            this.ui.Location = new System.Drawing.Point(388, 479);
             this.ui.Name = "ui";
             this.ui.Size = new System.Drawing.Size(81, 13);
             this.ui.TabIndex = 16;
@@ -280,9 +284,9 @@
             this.debslnk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.debslnk.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.debslnk.ForeColor = System.Drawing.Color.DimGray;
-            this.debslnk.Location = new System.Drawing.Point(15, 108);
+            this.debslnk.Location = new System.Drawing.Point(12, 157);
             this.debslnk.Name = "debslnk";
-            this.debslnk.Size = new System.Drawing.Size(446, 51);
+            this.debslnk.Size = new System.Drawing.Size(220, 51);
             this.debslnk.TabIndex = 3;
             this.debslnk.Text = "Get Debs";
             this.debslnk.UseVisualStyleBackColor = false;
@@ -293,7 +297,7 @@
             this.github.AutoSize = true;
             this.github.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.github.LinkColor = System.Drawing.Color.Red;
-            this.github.Location = new System.Drawing.Point(124, 430);
+            this.github.Location = new System.Drawing.Point(121, 479);
             this.github.Name = "github";
             this.github.Size = new System.Drawing.Size(42, 13);
             this.github.TabIndex = 13;
@@ -306,7 +310,7 @@
             this.autolabel.AutoSize = true;
             this.autolabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.autolabel.ForeColor = System.Drawing.Color.DimGray;
-            this.autolabel.Location = new System.Drawing.Point(77, 353);
+            this.autolabel.Location = new System.Drawing.Point(74, 402);
             this.autolabel.Name = "autolabel";
             this.autolabel.Size = new System.Drawing.Size(312, 25);
             this.autolabel.TabIndex = 19;
@@ -318,7 +322,7 @@
             this.paypal.AutoSize = true;
             this.paypal.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paypal.LinkColor = System.Drawing.Color.Red;
-            this.paypal.Location = new System.Drawing.Point(172, 430);
+            this.paypal.Location = new System.Drawing.Point(169, 479);
             this.paypal.Name = "paypal";
             this.paypal.Size = new System.Drawing.Size(44, 13);
             this.paypal.TabIndex = 14;
@@ -326,13 +330,54 @@
             this.paypal.Text = "paypal";
             this.paypal.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.paypal_LinkClicked);
             // 
+            // portlbl
+            // 
+            this.portlbl.AutoSize = true;
+            this.portlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold);
+            this.portlbl.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.portlbl.Location = new System.Drawing.Point(163, 90);
+            this.portlbl.Name = "portlbl";
+            this.portlbl.Size = new System.Drawing.Size(66, 29);
+            this.portlbl.TabIndex = 21;
+            this.portlbl.Text = "port:";
+            // 
+            // port
+            // 
+            this.port.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.port.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.port.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.port.ForeColor = System.Drawing.Color.White;
+            this.port.Location = new System.Drawing.Point(238, 93);
+            this.port.Name = "port";
+            this.port.Size = new System.Drawing.Size(200, 27);
+            this.port.TabIndex = 20;
+            this.port.TextChanged += new System.EventHandler(this.port_TextChanged);
+            // 
+            // terminal
+            // 
+            this.terminal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.terminal.FlatAppearance.BorderSize = 0;
+            this.terminal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.terminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.terminal.ForeColor = System.Drawing.Color.DimGray;
+            this.terminal.Location = new System.Drawing.Point(235, 157);
+            this.terminal.Name = "terminal";
+            this.terminal.Size = new System.Drawing.Size(220, 51);
+            this.terminal.TabIndex = 22;
+            this.terminal.Text = "Terminal";
+            this.terminal.UseVisualStyleBackColor = false;
+            this.terminal.Click += new System.EventHandler(this.terminal_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(484, 450);
+            this.ClientSize = new System.Drawing.Size(484, 501);
+            this.Controls.Add(this.terminal);
+            this.Controls.Add(this.portlbl);
+            this.Controls.Add(this.port);
             this.Controls.Add(this.paypal);
             this.Controls.Add(this.autolabel);
             this.Controls.Add(this.github);
@@ -387,6 +432,9 @@
         private System.Windows.Forms.LinkLabel github;
         private System.Windows.Forms.Label autolabel;
         private System.Windows.Forms.LinkLabel paypal;
+        private System.Windows.Forms.Label portlbl;
+        private System.Windows.Forms.TextBox port;
+        private System.Windows.Forms.Button terminal;
     }
 }
 
