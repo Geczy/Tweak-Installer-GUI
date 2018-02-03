@@ -203,7 +203,7 @@ namespace Tweak_Installer
             Process.Start("tic.exe", "dont-update no-install dont-respring");
         }
 
-        private void error_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void error_LinkClicked(object sender, EventArgs e)
         {
             Process.Start("https://github.com/josephwalden13/tweak-installer/issues");
         }
@@ -213,7 +213,7 @@ namespace Tweak_Installer
             Process.Start("http://s0n1c.org/cydia/");
         }
 
-        private void reddit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void reddit_LinkClicked(object sender, EventArgs e)
         {
             Process.Start("https://www.reddit.com/user/josephwalden/");
         }
@@ -228,17 +228,17 @@ namespace Tweak_Installer
             Process.Start("https://www.reddit.com/user/brnnkr/");
         }
 
-        private void twitter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void twitter_LinkClicked(object sender, EventArgs e)
         {
             Process.Start("https://twitter.com/jmw_2468");
         }
 
-        private void github_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void github_LinkClicked(object sender, EventArgs e)
         {
             Process.Start("https://github.com/josephwalden13/");
         }
 
-        private void paypal_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void paypal_LinkClicked(object sender, EventArgs e)
         {
             Process.Start("http://paypal.me/JosephWalden");
         }
@@ -262,6 +262,16 @@ namespace Tweak_Installer
         private void terminal_Click(object sender, EventArgs e)
         {
             Process.Start("putty.exe", host.Text + ":" + port.Text + " -l root -pw " + pass.Text);
+        }
+
+        private void toolStripLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void heyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

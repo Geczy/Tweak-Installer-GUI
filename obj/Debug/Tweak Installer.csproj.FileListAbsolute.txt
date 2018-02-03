@@ -19,3 +19,12 @@ C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\
 C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\obj\Debug\Tweak Installer.exe
 C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\obj\Debug\Tweak Installer.pdb
 C:\Users\josep\OneDrive\Documents\Visual Studio 2017\Projects\C\Tweak Installer\bin\Debug\WinSCPnet.dll
+C:\Users\Matt\Documents\GitHub\Tweak-Installer-GUI\bin\Debug\Tweak Installer.exe.config
+C:\Users\Matt\Documents\GitHub\Tweak-Installer-GUI\obj\Debug\Tweak Installer.exe
+C:\Users\Matt\Documents\GitHub\Tweak-Installer-GUI\obj\Debug\Tweak Installer.pdb
+C:\Users\Matt\Documents\GitHub\Tweak-Installer-GUI\bin\Debug\Tweak Installer.exe
+C:\Users\Matt\Documents\GitHub\Tweak-Installer-GUI\bin\Debug\Tweak Installer.pdb
+C:\Users\Matt\Documents\GitHub\Tweak-Installer-GUI\obj\Debug\Tweak Installer.csprojResolveAssemblyReference.cache
+C:\Users\Matt\Documents\GitHub\Tweak-Installer-GUI\obj\Debug\Tweak_Installer.Main.resources
+C:\Users\Matt\Documents\GitHub\Tweak-Installer-GUI\obj\Debug\Tweak_Installer.Properties.Resources.resources
+C:\Users\Matt\Documents\GitHub\Tweak-Installer-GUI\obj\Debug\Tweak Installer.csproj.GenerateResource.Cache
